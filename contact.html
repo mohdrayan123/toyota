@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toyota Showroom Contact</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f6f8;
+    }
+    header {
+      background: #fff;
+      border-bottom: 2px solid #e53935;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      color: #e53935;
+      margin: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #444;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #e53935;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #c62828;
+    }
+    .info {
+      margin-top: 20px;
+      text-align: center;
+      color: #260808;
+      line-height: 1.6;
+    }
+    .map {
+      margin-top: 25px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 15px;
+    }.footer{padding:24px 0;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>TOYOTA SHOWROOM CONTACT</h1>
+  </header>
+
+  <header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="booking.html">BOOKING</a>
+        <a href="contact.html">CONTACT</a>
+        
+      </nav>
+    
+  </header>
+  <div class="container">
+    <h2>Get in Touch</h2>
+
+    <form id="contactForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" required>
+
+      <label for="message">Message</label>
+      <textarea id="messageBox" rows="4" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="message" id="successMsg"></div>
+
+    <div class="info">
+      <h3>Our Showroom</h3>
+      <p>Toyota Showroom, 123 Main Road, Your City, India</p>
+      <p>📞 Phone:9380140626</p>
+      <p>📧 Email: @Mohammedrayan.com</p>
+      <p>🕓 Open: Mon–Sat 9:00 AM – 7:00 PM</p>
+    </div>
+
+    <div class="map">
+      <iframe 
+        src="https://www.google.com/maps?q=toyota%20showroom%20near%20me&output=embed" 
+        width="100%" 
+        height="300" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+ <div class="footer">
+      Designed and Developed by MOHAMMED RAYAN
+    </div>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMsg');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const contact = {
+        name: contactForm.name.value,
+        email: contactForm.email.value,
+        phone: contactForm.phone.value,
+        message: contactForm.messageBox.value,
+      };
+
+      // Save locally (replace with real backend later)
+      const contacts = JSON.parse(localStorage.getItem('toyotaContacts') || '[]');
+      contacts.push(contact);
+      localStorage.setItem('toyotaContacts', JSON.stringify(contacts));
+
+      successMsg.textContent = '✅ Message sent successfully! We will contact you soon.';
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>

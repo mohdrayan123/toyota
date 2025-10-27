@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toyota Booking Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f6f8;
+    }
+    header {
+      background: #fff;
+      padding: 20px;
+      border-bottom: 2px solid #e53935;
+      text-align: center;
+    }
+    header h1 {
+      color: #e53935;
+      margin: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      color: #444;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #e53935;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #c62828;
+    }
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: green;
+    }.footer{padding:24px 0;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TOYOTA SHOWROOM BOOKING FORM</h1>
+  </header>
+  <header>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="booking.html">BOOKING</a>
+        <a href="contact.html">CONTACT</a>
+        
+      </nav>
+    
+  </header>
+
+  <div class="container">
+    <h2>Book Your Test Drive</h2>
+    <form id="bookingForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" required />
+
+      <label for="model">Select Car Model</label>
+      <select id="model" required>
+        <option value="">Choose a model</option>
+        <option>Corolla Altis</option>
+        <option>Urban Cruiser</option>
+        <option>Fortuner</option>
+        <option>bZ4X EV</option>
+      </select>
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" required />
+
+      <label for="comments">Comments (optional)</label>
+      <textarea id="comments" rows="3"></textarea>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+    <div class="message" id="message"></div>
+  </div>
+ <div class="footer">
+      Designed and Developed by MOHAMMED RAYAN
+    </div>
+  <script>
+    const form = document.getElementById('bookingForm');
+    const msg = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get data
+      const booking = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        model: form.model.value,
+        date: form.date.value,
+        comments: form.comments.value,
+      };
+
+      // Save locally (you can replace this with API or Firebase)
+      const bookings = JSON.parse(localStorage.getItem('toyotaBookings') || '[]');
+      bookings.push(booking);
+      localStorage.setItem('toyotaBookings', JSON.stringify(bookings));
+
+      msg.textContent = '✅ Booking submitted successfully!';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
